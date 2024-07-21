@@ -1,11 +1,14 @@
 .DELETE_ON_ERROR .ONESHELL:
 
-DEPENDENCY := $(patsubst %exe,%d,$(TARGET))
+DEPENDENCY := $(addsuffix .d,$(basename $(TARGET)))
+DIRECTORY := $(dir $(TARGET))
 
-$(TARGET): $(DEPENDENCY)
-	mkdir -p $(@D)
-	g++ -o $@ -MMD $(OPTIONS)
+$(TARGET): $(DEPENDENCY) | $(DIRECTORY)
+	g++ -MMD -o $@ $(OPTIONS)
 #	$(SYSTEMDRIVE)/maker/bin/maker $<
+
+$(DIRECTORY):
+	mkdir -p $@
 
 $(MAKEFILE_LIST) $(DEPENDENCY):;
 
