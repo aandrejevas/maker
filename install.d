@@ -5,7 +5,7 @@ DIRECTORY := $(dir $(TARGET))
 
 $(TARGET): $(DEPENDENCY) | $(DIRECTORY)
 	g++ -MMD -o $@ $(OPTIONS)
-#	$(SYSTEMDRIVE)/maker/bin/maker $<
+	$(HOME)/maker/bin/maker $<
 
 $(DIRECTORY):
 	mkdir -p $@

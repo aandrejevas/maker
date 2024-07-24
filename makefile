@@ -1,8 +1,8 @@
 TARGETS := maker
 
-include variables.d
+include $(HOME)/maker/variables.d
 
 SOURCE := src/main.cpp
-OPTIONS := $(OPTIONS) -lboost_iostreams-mt
+OPTIONS += -municode -lboost_filesystem-mt -lboost_iostreams-mt
 
-include all.d
+include $(HOME)/maker/all.d
