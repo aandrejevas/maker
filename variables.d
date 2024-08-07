@@ -1,5 +1,7 @@
 TARGETS := $(addprefix bin/,$(addsuffix .exe,$(TARGETS)))
 
+COMMAND := $(firstword $(TARGETS))
+
 SOURCE = $(patsubst bin/%exe,%cpp,$(1))
 
 # https://stackoverflow.com/questions/68602608/static-and-dynamic-linking-whats-the-need-for-plt
