@@ -10,6 +10,6 @@ $(TARGET): $(DEPENDENCY) | $(DIRECTORY)
 $(DIRECTORY):
 	mkdir -p $@
 
-$(MAKEFILE_LIST) $(DEPENDENCY):;
-
 -include $(DEPENDENCY)
+
+$(MAKEFILE_LIST):;
