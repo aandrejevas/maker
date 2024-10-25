@@ -23,6 +23,6 @@ OPTIONS :=	-fno-ident -fno-exceptions -fstrict-overflow -freg-struct-return -fno
 			\
 			-march=native -mtune=native \
 			\
-			-s -static \
+			-s -static -static-libstdc++ \
 			\
 			-std=c++26
