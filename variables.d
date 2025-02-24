@@ -4,10 +4,13 @@ COMMAND := $(firstword $(TARGETS))
 
 SOURCE = $(patsubst bin/%exe,%cpp,$(1))
 
+# By default on: -fno-common
+# https://www.youtube.com/watch?v=vtz8S10hGuc – Use -fvisibility=hidden!
+# https://stackoverflow.com/questions/48621251/why-fvisibility-inlines-hidden-is-not-the-default
 # https://stackoverflow.com/questions/68602608/static-and-dynamic-linking-whats-the-need-for-plt
 # https://lists.alpinelinux.org/%7Ealpine/devel/%3C1628515011.zujvcn248v.none%40localhost%3E
 # CODE_GENERATION - CPP_LANGUAGE - WARNING - OPTIMIZATION - PREPROCESSOR - DIAGNOSTIC - OVERALL - MACHINE - LINKER - C_LANGUAGE
-OPTIONS :=	-fno-ident -fno-exceptions -fstrict-overflow -freg-struct-return -fno-plt -fno-common \
+OPTIONS :=	-fno-ident -fno-exceptions -fstrict-overflow -freg-struct-return -fno-plt -fvisibility=hidden \
 			\
 			-fimplicit-constexpr -ffold-simple-inlines -fstrict-enums -fno-threadsafe-statics -fno-rtti -fno-enforce-eh-specs -fnothrow-opt -fno-gnu-keywords -fno-operator-names -Wctad-maybe-unsupported -Wctor-dtor-privacy -Wstrict-null-sentinel -Wzero-as-null-pointer-constant -Wredundant-tags -Wmismatched-tags -Wextra-semi -Wsign-promo -Wold-style-cast \
 			\
