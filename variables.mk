@@ -1,6 +1,7 @@
 private TARGETS := $(addprefix bin/,$(addsuffix .exe,$(TARGETS)))
 
-COMMAND := $(firstword $(TARGETS)) >>$(MAKE_TERMERR)
+# We want to replicate the behavior that we would get if we launched the target from its parent directory.
+COMMAND := cd $(dir $(firstword $(TARGETS))); ./$(notdir $(firstword $(TARGETS))) >>$(MAKE_TERMERR)
 
 # We only define target specific variables where that is needed to increase performance.
 SOURCE = $*.cpp
