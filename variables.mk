@@ -7,25 +7,29 @@ COMMAND := cd $(dir $(firstword $(TARGETS))); ./$(notdir $(firstword $(TARGETS))
 SOURCE = $*.cpp
 
 # By default on:
-#	-fno-common https://gcc.gnu.org/onlinedocs/gcc/Code-Gen-Options.html#index-fcommon
+#	-fno-common – https://gcc.gnu.org/onlinedocs/gcc/Code-Gen-Options.html#index-fcommon
 # Do not use:
 #	-Wctad-maybe-unsupported – Nenaudojame, nes 99% atvejų, ctad yra palaikomas.
-#	https://stackoverflow.com/questions/48621251/why-fvisibility-inlines-hidden-is-not-the-default
+#	-fvisibility-inlines-hidden – https://stackoverflow.com/questions/48621251/why-fvisibility-inlines-hidden-is-not-the-default
+#	-fno-char8_t – nenorime leisti, kad būtų galima tą patį dalyką atlikti dviem būdais (https://utf8everywhere.org/ :) ).
+#	-municode – anksčiau reikėjo UNICODE macro, bet dabar windows -A API's priima UTF-8 tekstą; taip pat argumentas leistų apibrėžti neteisingą main.
+#	-Wno-alloc-size-larger-than – kompiliatorius klaidingai metė įspėjimą tai reikėjo argumento, bet jei taip dar bus tai kode tai išspręsti.
+#	-Wshadow=compatible-local – Galvojau, kad su šiuo argumentu, galėsiu apibrėžti const& su tuo pačiu vardu, bet meta šią klaidą ir -Winit-self, ir panaudojus vardą -Wmaybe-uninitialized, nes po lygu vardas nurodo į naują reikšmę, kuri yra neinicializuota.
 # Use:
-#	https://www.youtube.com/watch?v=vtz8S10hGuc – Use -fvisibility=hidden!
-#	https://stackoverflow.com/questions/68602608/static-and-dynamic-linking-whats-the-need-for-plt
-#	https://lists.alpinelinux.org/%7Ealpine/devel/%3C1628515011.zujvcn248v.none%40localhost%3E
-#	We use -Wshadow=compatible-local and not some other shadow option bc to allow creating const aliases to non const variables with the same name so that in the alias scope it would not even be possible to use the non const variable.
+#	-DNDEBUG – be kabučių, nes taupome vietą, čia ne kelias koks, kad reiktų kabučių.
+#	-fvisibility=hidden – https://www.youtube.com/watch?v=vtz8S10hGuc
+#	-fno-plt – https://stackoverflow.com/questions/68602608/static-and-dynamic-linking-whats-the-need-for-plt https://lists.alpinelinux.org/%7Ealpine/devel/%3C1628515011.zujvcn248v.none%40localhost%3E
+#
 # CODE_GENERATION - CPP_LANGUAGE - WARNING - OPTIMIZATION - PREPROCESSOR - DIAGNOSTIC - OVERALL - MACHINE - LINKER - C_LANGUAGE
 OPTIONS :=	-fno-ident -fno-exceptions -fstrict-overflow -freg-struct-return -fno-plt -fvisibility=hidden \
 			\
 			-fimplicit-constexpr -ffold-simple-inlines -fstrict-enums -fno-threadsafe-statics -fno-rtti -fno-enforce-eh-specs -fnothrow-opt -fno-gnu-keywords -fno-operator-names -Wctor-dtor-privacy -Wstrict-null-sentinel -Wzero-as-null-pointer-constant -Wredundant-tags -Wmismatched-tags -Wextra-semi -Wsign-promo -Wold-style-cast \
 			\
-			-fconcepts-diagnostics-depth=5 -fmax-errors=5 -Wall -Wextra -Wdisabled-optimization -Winvalid-pch -Wundef -Wcast-align -Wcast-qual -Wconversion -Wsign-conversion -Warith-conversion -Wdouble-promotion -Wimplicit-fallthrough=5 -Wpedantic -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wfloat-equal -Wpadded -Wpacked -Wredundant-decls -Wstrict-overflow -Wshadow=compatible-local -Wuseless-cast -Wnrvo -Wno-alloc-size-larger-than \
+			-fconcepts-diagnostics-depth=5 -fmax-errors=5 -Wall -Wextra -Wdisabled-optimization -Winvalid-pch -Wundef -Wcast-align -Wcast-qual -Wconversion -Wsign-conversion -Warith-conversion -Wdouble-promotion -Wimplicit-fallthrough=5 -Wpedantic -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wfloat-equal -Wpadded -Wpacked -Wredundant-decls -Wstrict-overflow -Wshadow=local -Wuseless-cast -Wnrvo \
 			\
 			-fmerge-all-constants -flto=auto -fuse-linker-plugin -Ofast \
 			\
-			-D'NDEBUG' \
+			-DNDEBUG \
 			\
 			-fno-show-column \
 			\
