@@ -8,7 +8,10 @@ SOURCE = $*.cpp
 
 # By default on:
 #	-fno-common – https://gcc.gnu.org/onlinedocs/gcc/Code-Gen-Options.html#index-fcommon
+#	-ffold-simple-inlines – https://gcc.gnu.org/onlinedocs/gcc/C_002b_002b-Dialect-Options.html#index-ffold-simple-inlines
 # Do not use:
+#	-fnothrow-opt – nereikalingas, nes nauji C++ standartai nebeturi throw()/dynamic exception specification.
+#	-fno-enforce-eh-specs – nereikalingas, nes nauji C++ standartai nebeturi throw()/dynamic exception specification.
 #	-Wctad-maybe-unsupported – Nenaudojame, nes 99% atvejų, ctad yra palaikomas.
 #	-fvisibility-inlines-hidden – https://stackoverflow.com/questions/48621251/why-fvisibility-inlines-hidden-is-not-the-default
 #	-fno-char8_t – nenorime leisti, kad būtų galima tą patį dalyką atlikti dviem būdais (https://utf8everywhere.org/ :) ).
@@ -23,7 +26,7 @@ SOURCE = $*.cpp
 # CODE_GENERATION - CPP_LANGUAGE - WARNING - OPTIMIZATION - PREPROCESSOR - DIAGNOSTIC - OVERALL - MACHINE - LINKER - C_LANGUAGE
 OPTIONS :=	-fno-ident -fno-exceptions -fstrict-overflow -freg-struct-return -fno-plt -fvisibility=hidden \
 			\
-			-fimplicit-constexpr -ffold-simple-inlines -fstrict-enums -fno-threadsafe-statics -fno-rtti -fno-enforce-eh-specs -fnothrow-opt -fno-gnu-keywords -fno-operator-names -Wctor-dtor-privacy -Wstrict-null-sentinel -Wzero-as-null-pointer-constant -Wredundant-tags -Wmismatched-tags -Wextra-semi -Wsign-promo -Wold-style-cast \
+			-fimplicit-constexpr -fstrict-enums -fno-threadsafe-statics -fno-rtti -fno-gnu-keywords -fno-operator-names -Wctor-dtor-privacy -Wstrict-null-sentinel -Wzero-as-null-pointer-constant -Wredundant-tags -Wmismatched-tags -Wextra-semi -Wsign-promo -Wold-style-cast \
 			\
 			-fconcepts-diagnostics-depth=5 -fmax-errors=5 -Wall -Wextra -Wdisabled-optimization -Winvalid-pch -Wundef -Wcast-align -Wcast-qual -Wconversion -Wsign-conversion -Warith-conversion -Wdouble-promotion -Wimplicit-fallthrough=5 -Wpedantic -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wfloat-equal -Wpadded -Wpacked -Wredundant-decls -Wstrict-overflow -Wshadow=local -Wuseless-cast -Wnrvo \
 			\
