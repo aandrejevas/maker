@@ -22,17 +22,18 @@ SOURCE = $*.cpp
 #	-DNDEBUG – be kabučių, nes taupome vietą, čia ne kelias koks, kad reiktų kabučių.
 #	-fvisibility=hidden – https://www.youtube.com/watch?v=vtz8S10hGuc
 #	-fno-plt – https://stackoverflow.com/questions/68602608/static-and-dynamic-linking-whats-the-need-for-plt https://lists.alpinelinux.org/%7Ealpine/devel/%3C1628515011.zujvcn248v.none%40localhost%3E
+#	-finput-charset=UTF-8 – patikrinau ir nėra automatiškai paduodamas nustatymas. Taip pat nereikia tikėtis, kad lokalė bus tinkama. Patikrinau ant testo failo, kurį radau GCC repozitorijoje ir kuris pilnas UTF-8 klaidingų simbolių sekų, ir be šito nustatymo kompiliatorius klaidos nemetė (įkopijuoti neįmanoma klaidingų simbolių į vscode, nes vscode ir naršyklės pakeičia simbolius, net išsaugant testo failą be formatavimo vscode pakeitė klaidingus simbolius, įmanoma redaguoti testo failą su terminalo teksto redaktoriais).
 #
 # CODE_GENERATION - CPP_LANGUAGE - WARNING - OPTIMIZATION - PREPROCESSOR - DIAGNOSTIC - OVERALL - MACHINE - LINKER - C_LANGUAGE
 OPTIONS :=	-fno-ident -fno-exceptions -fstrict-overflow -freg-struct-return -fno-plt -fvisibility=hidden \
 			\
 			-fimplicit-constexpr -fstrict-enums -fno-threadsafe-statics -fno-rtti -fno-gnu-keywords -fno-operator-names -Wctor-dtor-privacy -Wstrict-null-sentinel -Wzero-as-null-pointer-constant -Wredundant-tags -Wmismatched-tags -Wextra-semi -Wsign-promo -Wold-style-cast \
 			\
-			-fconcepts-diagnostics-depth=5 -fmax-errors=5 -Wall -Wextra -Wdisabled-optimization -Winvalid-pch -Wundef -Wcast-align -Wcast-qual -Wconversion -Wsign-conversion -Warith-conversion -Wdouble-promotion -Wimplicit-fallthrough=5 -Wpedantic -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wfloat-equal -Wpadded -Wpacked -Wredundant-decls -Wstrict-overflow -Wshadow=local -Wuseless-cast -Wnrvo \
+			-fmax-errors=5 -Wall -Wextra -Wdisabled-optimization -Winvalid-pch -Wundef -Wcast-align -Wcast-qual -Wconversion -Wsign-conversion -Warith-conversion -Wdouble-promotion -Wimplicit-fallthrough=5 -Wpedantic -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wfloat-equal -Wpadded -Wpacked -Wredundant-decls -Wstrict-overflow -Wshadow=local -Wuseless-cast -Wnrvo \
 			\
 			-fmerge-all-constants -flto=auto -fuse-linker-plugin -Ofast \
 			\
-			-DNDEBUG \
+			-DNDEBUG -finput-charset=UTF-8 \
 			\
 			-fno-show-column \
 			\
@@ -43,3 +44,6 @@ OPTIONS :=	-fno-ident -fno-exceptions -fstrict-overflow -freg-struct-return -fno
 			-s -static -static-libstdc++ \
 			\
 			-std=c++26
+
+# Add it if you need it.
+private VERBOSE := -fconcepts-diagnostics-depth=5 -fdiagnostics-all-candidates
