@@ -9,6 +9,7 @@ SOURCE = $*.cpp
 # By default on:
 #	-fno-common – https://gcc.gnu.org/onlinedocs/gcc/Code-Gen-Options.html#index-fcommon
 #	-ffold-simple-inlines – https://gcc.gnu.org/onlinedocs/gcc/C_002b_002b-Dialect-Options.html#index-ffold-simple-inlines
+#	-fno-gnu-keywords – https://gcc.gnu.org/onlinedocs/gcc/C_002b_002b-Dialect-Options.html#index-fno-gnu-keywords
 # Do not use:
 #	-fnothrow-opt – nereikalingas, nes nauji C++ standartai nebeturi throw()/dynamic exception specification.
 #	-fno-enforce-eh-specs – nereikalingas, nes nauji C++ standartai nebeturi throw()/dynamic exception specification.
@@ -28,9 +29,9 @@ SOURCE = $*.cpp
 # CODE_GENERATION - CPP_LANGUAGE - WARNING - OPTIMIZATION - PREPROCESSOR - DIAGNOSTIC - OVERALL - MACHINE - LINKER - C_LANGUAGE
 OPTIONS :=	-fno-ident -fno-exceptions -fstrict-overflow -freg-struct-return -fno-plt -fvisibility=hidden \
 			\
-			-fimplicit-constexpr -fstrict-enums -fno-threadsafe-statics -fno-rtti -fno-gnu-keywords -fno-operator-names -Wctor-dtor-privacy -Wstrict-null-sentinel -Wzero-as-null-pointer-constant -Wredundant-tags -Wmismatched-tags -Wextra-semi -Wsign-promo -Wold-style-cast \
+			-fimplicit-constexpr -fstrict-enums -fno-threadsafe-statics -fno-rtti -fno-operator-names -Wctor-dtor-privacy -Wstrict-null-sentinel -Wzero-as-null-pointer-constant -Wredundant-tags -Wmismatched-tags -Wextra-semi -Wsign-promo -Wold-style-cast \
 			\
-			-fmax-errors=5 -Wall -Wextra -Wdisabled-optimization -Winvalid-pch -Wundef -Wcast-align -Wcast-qual -Wconversion -Wsign-conversion -Warith-conversion -Wdouble-promotion -Wimplicit-fallthrough=5 -Wpedantic -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wfloat-equal -Wpadded -Wpacked -Wredundant-decls -Wstrict-overflow -Wshadow=local -Wuseless-cast -Wnrvo \
+			-fmax-errors=5 -Wall -Wextra -Wdisabled-optimization -Winvalid-pch -Wundef -Wcast-align -Wcast-qual -Wconversion -Wsign-conversion -Warith-conversion -Wdouble-promotion -Wimplicit-fallthrough=5 -pedantic-errors -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wfloat-equal -Wpadded -Wpacked -Wredundant-decls -Wstrict-overflow -Wshadow=local -Wuseless-cast -Wnrvo \
 			\
 			-fmerge-all-constants -flto=auto -fuse-linker-plugin -Ofast \
 			\
