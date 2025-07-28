@@ -12,12 +12,13 @@ SOURCE = $*.cpp
 # Do not use:
 #	-fnothrow-opt – nereikalingas, nes nauji C++ standartai nebeturi throw()/dynamic exception specification.
 #	-fno-enforce-eh-specs – nereikalingas, nes nauji C++ standartai nebeturi throw()/dynamic exception specification.
-#	-Wctad-maybe-unsupported – Nenaudojame, nes 99% atvejų, ctad yra palaikomas.
+#	-Wctad-maybe-unsupported – Nenaudojame, nes 99% atveju, ctad yra palaikomas.
 #	-fvisibility-inlines-hidden – https://stackoverflow.com/questions/48621251/why-fvisibility-inlines-hidden-is-not-the-default
 #	-fno-char8_t – nenorime leisti, kad būtų galima tą patį dalyką atlikti dviem būdais (https://utf8everywhere.org/ :) ).
 #	-municode – anksčiau reikėjo UNICODE macro, bet dabar windows -A API's priima UTF-8 tekstą; taip pat argumentas leistų apibrėžti neteisingą main.
 #	-Wno-alloc-size-larger-than – kompiliatorius klaidingai metė įspėjimą tai reikėjo argumento, bet jei taip dar bus tai kode tai išspręsti.
 #	-Wshadow=compatible-local – Galvojau, kad su šiuo argumentu, galėsiu apibrėžti const& su tuo pačiu vardu, bet meta šią klaidą ir -Winit-self, ir panaudojus vardą -Wmaybe-uninitialized, nes po lygu vardas nurodo į naują reikšmę, kuri yra neinicializuota.
+#	-static – jeigu greitaveika labai svarbi, tai tiems projektams pridėti šį parametrą, bet daugeliu atveju svarbiau vartotojo sistemos nepripildyti dideliais vykdomaisiais failais.
 # Use:
 #	-DNDEBUG – be kabučių, nes taupome vietą, čia ne kelias koks, kad reiktų kabučių.
 #	-fvisibility=hidden – https://www.youtube.com/watch?v=vtz8S10hGuc
@@ -41,9 +42,10 @@ OPTIONS :=	-fno-ident -fno-exceptions -fstrict-overflow -freg-struct-return -fno
 			\
 			-march=native -mtune=native \
 			\
-			-s -static -static-libstdc++ \
+			-s \
 			\
 			-std=c++26
 
 # Add it if you need it.
 private VERBOSE := -fconcepts-diagnostics-depth=5 -fdiagnostics-all-candidates
+private STATIC := -static -static-libstdc++
