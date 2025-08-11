@@ -10,6 +10,7 @@ SOURCE = $*.cpp
 #	-fno-common – https://gcc.gnu.org/onlinedocs/gcc/Code-Gen-Options.html#index-fcommon
 #	-ffold-simple-inlines – https://gcc.gnu.org/onlinedocs/gcc/C_002b_002b-Dialect-Options.html#index-ffold-simple-inlines
 #	-fno-gnu-keywords – https://gcc.gnu.org/onlinedocs/gcc/C_002b_002b-Dialect-Options.html#index-fno-gnu-keywords
+#	-fuse-linker-plugin – https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html#index-fuse-linker-plugin
 # Do not use:
 #	-fnothrow-opt – nereikalingas, nes nauji C++ standartai nebeturi throw()/dynamic exception specification.
 #	-fno-enforce-eh-specs – nereikalingas, nes nauji C++ standartai nebeturi throw()/dynamic exception specification.
@@ -33,7 +34,7 @@ OPTIONS :=	-fno-ident -fno-exceptions -fstrict-overflow -freg-struct-return -fno
 			\
 			-fmax-errors=5 -Wall -Wextra -Wdisabled-optimization -Winvalid-pch -Wundef -Wcast-align -Wcast-qual -Wconversion -Wsign-conversion -Warith-conversion -Wdouble-promotion -Wimplicit-fallthrough=5 -pedantic-errors -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wfloat-equal -Wpadded -Wpacked -Wredundant-decls -Wstrict-overflow -Wshadow=local -Wuseless-cast -Wnrvo \
 			\
-			-fmerge-all-constants -flto=auto -fuse-linker-plugin -Ofast \
+			-fmerge-all-constants -flto=auto -Ofast \
 			\
 			-DNDEBUG -finput-charset=UTF-8 \
 			\
